@@ -6,9 +6,7 @@ const videoBtn = document.querySelector("#videoBtn");
 const videoInput = document.querySelector("#videoInput");
 const videoPlayer = document.querySelector("main")
 
-const speedUpHandler = () => {
-    console.log("speed up was clicked");
-}
+
 
 const handleInput = () => {
     console.log("input is clicked");
@@ -27,6 +25,30 @@ const acceptInputHandler = (obj) => {
 
 }
 
+const speedUpHandler = () => {
+    const videoElement = document.querySelector("video")
+    if(videoElement==null){
+        return;
+    }
+    if(videoElement.playbackRate>3)
+{
+    return;
+}    console.log("current speed:",videoElement.playbackRate);
+    const increaseSpeed = videoElement.playbackRate+0.5;
+    videoElement.playbackRate = increaseSpeed;
+    console.log("increase speed", videoElement.playbackRate);
+}
+
+const speedDownHandler = () =>  {
+    const videoElement = document.querySelector("video");
+    console.log("current speed :",videoElement.playbackRate);
+    if(videoElement.playbackRate>0){
+        const decreaseSpeed = videoElement.playbackRate - 0.5;
+        videoElement.playbackRate = decreaseSpeed;
+        console.log("decreased speed", videoElement.playbackRate);
+    }
+}
 speedUp.addEventListener("click",speedUpHandler);
 videoBtn.addEventListener("click",handleInput);
-videoInput.addEventListener("change",acceptInputHandler)
+videoInput.addEventListener("change",acceptInputHandler);
+speedDown.addEventListener("click",speedDownHandler);
