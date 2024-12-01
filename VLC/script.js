@@ -28,11 +28,11 @@ const acceptInputHandler = (obj) => {
 const speedUpHandler = () => {
     const videoElement = document.querySelector("video")
     if(videoElement==null){
-        return;
+        return
     }
     if(videoElement.playbackRate>3)
 {
-    return;
+    return
 }    console.log("current speed:",videoElement.playbackRate);
     const increaseSpeed = videoElement.playbackRate+0.5;
     videoElement.playbackRate = increaseSpeed;
@@ -48,7 +48,40 @@ const speedDownHandler = () =>  {
         console.log("decreased speed", videoElement.playbackRate);
     }
 }
+const volumeUpHandler = () => {
+    const videoElement = document.querySelector("video");
+    console.log("current volume", videoElement.volume);
+    
+    if(videoElement.volume<1.0){
+        
+        const increaseVolume = videoElement.volume + 0.1;
+        videoElement.volume = increaseVolume;
+    }
+    else{
+        return;
+    }
+    console.log("increased volume", videoElement.volume);
+}
+
+const volumeDownHandler = () => {
+    const videoElement = document.querySelector("video");
+    console.log("current volume",videoElement.volume);
+    
+    if(videoElement.volume>0.0){
+        
+        const decreaseVolume = videoElement.volume - 0.1;
+        videoElement.volume = decreaseVolume;
+    }
+    else{
+        return;
+    }
+    
+    console.log("current volume", videoElement.volume);
+
+}
 speedUp.addEventListener("click",speedUpHandler);
 videoBtn.addEventListener("click",handleInput);
 videoInput.addEventListener("change",acceptInputHandler);
 speedDown.addEventListener("click",speedDownHandler);
+volumeUp.addEventListener("click",volumeUpHandler);
+volumeDown.addEventListener("click",volumeDownHandler);
